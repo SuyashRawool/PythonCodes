@@ -1,0 +1,12 @@
+myCanvas = Canvas(frame3)//this is the frame 
+myCanvas.place(relwidth=1.0,relheight=1.0)
+
+scrollbar = Scrollbar(frame3,orient='vertical',command=myCanvas.yview)
+scrollbar.pack( side = RIGHT, fill = 'y' )
+
+myCanvas.configure(yscrollcommand=scrollbar.set)
+
+myCanvas.bind('<Configure>', lambda e: myCanvas.configure(scrollregion = myCanvas.bbox('all')))
+
+myFrame = Frame(myCanvas)
+myCanvas.create_window((0,0),window=myFrame, anchor='nw')

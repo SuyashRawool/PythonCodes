@@ -1,0 +1,28 @@
+import psycopg2
+
+#connect to db
+con= psycopg2.connect(
+        host = "localhost",
+        database = "test",
+        user= "postgres",
+        password = "Suyash23#"
+)
+
+
+
+def main():
+    # cursor
+    cur = con.cursor()
+    cur.execute("select rollno,name from students")
+
+    rows=cur.fetchall()
+    for r in rows:
+        print(f"Roll num: {r[0]} Name: {r[1]}")
+
+    cur.execute("insert into students(rollno,name,age) values(30,Rohit,34)")
+    con.commit()
+
+# Press the green button in the gutter to run the script.
+if __name__ == '__main__':
+    main()
+con.close()
